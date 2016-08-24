@@ -1,0 +1,30 @@
+<f:section name="MenuRecursionStart">
+  <f:if condition="{toc -> f:count()} > '0'">      
+    <ol class="toclist {f:if(condition:'{settings.Enable-Hierarchy} == 1',then:'hierarchy',else:'flat')}">
+      <f:for each="{toc}" as="startLevelPage">
+        <li class="toclevel-{startLevelPage.level}">
+        <f:link.page section="c{startLevelPage.anchor}">
+          <span class="toctext" data-slug="{startLevelPage.urlhash}">{startLevelPage.content}</span>
+        </f:link.page>
+        <f:render section="MenuRecursionStep" arguments="{toc: '{startLevelPage.toc}'}"/>
+        </li>
+      </f:for>
+    </ol>
+  </f:if>
+</f:section>
+
+
+<f:section name="MenuRecursionStep">
+ <f:if condition="{toc -> f:count()} > '0'">      
+    <ol>
+      <f:for each="{toc}" as="currentSubPage">
+        <li class="toclevel-{currentSubPage.level}">
+        <f:link.page section="c{currentSubPage.anchor}">
+          <span class="toctext" data-slug="{currentSubPage.urlhash}">{currentSubPage.content}</span>
+        </f:link.page>
+        <f:render section="MenuRecursionStep" arguments="{toc: '{currentSubPage.toc}'}" />
+        </li>
+      </f:for>
+    </ol>
+  </f:if>
+</f:section>

@@ -1,0 +1,37 @@
+<f:layout name="Default"/>
+
+<f:section name="main">
+  
+  
+
+  <f:if condition="{toc -> f:count()} > '0'">
+    <div id="toc" class="toc {f:if(condition:'{settings.Enable-Smoothscroll} == 1',then:'smoothscroll',else:'hardjump')} {f:if(condition:'{settings.Show-Numbers} == 1',then:'numbers',else:'nonumbers')} {f:if(condition:'{settings.Speaking-URL-Hash} == 1',then:'speaking-urls',else:'standard')}">
+      <div id="toctitle">
+        <strong><f:translate key="toc.headline" /></strong>
+        <f:if condition="{settings.Toggle-Visibility} == 1">
+          <span class="toctoggle">
+            [<a href="#" id="togglelink">
+              <span class="hide"><f:translate key="toggle.show" /></span>
+              <span><f:translate key="toggle.hide" /></span>
+            </a>]
+          </span>
+        </f:if>
+      </div>
+      <f:if condition="{settings.Enable-Hierarchy} == 1">
+        <f:then>
+          <f:render partial="Recursion" section="MenuRecursionStart" arguments="{_all}"/>          
+        </f:then>
+        <f:else>
+          <ol class="toclist {f:if(condition:'{settings.Enable-Hierarchy} == 1',then:'hierarchy',else:'flat')}">
+            <f:for each="{toc}" as="headline" iteration="itemIterator">
+              <li class="toclevel-{headline.level}">
+              <f:render partial="Link" arguments="{_all}"/>
+              </li>
+            </f:for>
+          </ol>
+        </f:else>
+      </f:if>
+    </div> 
+  </f:if>
+
+</f:section>

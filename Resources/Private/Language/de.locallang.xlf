@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-11-12T17:48:01Z" product-name="toc">
+		<header/>
+		<body>
+			<trans-unit id="toc.headline">
+				<source>Contents</source>
+                <target state="translated">Inhaltsverzeichnis</target>
+			</trans-unit>
+			<trans-unit id="toggle.hide">
+				<source>hide</source>
+                <target state="translated">Verbergen</target>
+			</trans-unit>
+			<trans-unit id="toggle.show">
+				<source>show</source>
+                <target state="translated">Anzeigen</target>
+			</trans-unit>            
+		</body>
+	</file>
+</xliff>

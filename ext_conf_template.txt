@@ -1,0 +1,23 @@
+# cat=Settings//10; type=boolean; label=Exclude first headline in content
+Exclude-First = 0
+
+# cat=Settings//15; type=integer; label=Show when minimum amount of headlines are present
+Show-Amount = 4
+
+# cat=Settings//20; type=boolean; label=Allow the user to toggle the visibility of the contents
+Toggle-Visibility = 0
+
+# cat=Settings//30; type=boolean; label=Enable hierarchy
+Enable-Hierarchy = 1
+
+# cat=Settings//40; type=boolean; label=Enable Smooth-Scroll
+Enable-Smoothscroll = 1
+
+# cat=Settings//50; type=string; label=Exclude Headlines
+Exclude-Headlines = h5,h6
+
+# cat=Settings//60; type=boolean; label=Show numbers in front of links
+Show-Numbers = 1
+
+# cat=Settings//70; type=boolean; label=Use Speaking URL Hashs with Javascript instead of built-in IDs
+Speaking-URL-Hash = 1

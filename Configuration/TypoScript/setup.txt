@@ -1,0 +1,19 @@
+
+plugin.tx_toc_toc {
+	view {
+		templateRootPaths.0 = {$plugin.tx_toc_toc.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_toc_toc.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_toc_toc.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_toc_toc.persistence.storagePid}
+	}
+}
+page {
+	includeCSS {
+		style = EXT:toc/Resources/Public/Css/style.css
+	}
+	includeJSFooter {
+		custom = EXT:toc/Resources/Public/Script/toc-script.js
+	}
+}
