@@ -20,4 +20,13 @@ Exclude-Headlines = h5,h6
 Show-Numbers = 1
 
 # cat=Settings//70; type=boolean; label=Use Speaking URL Hashs with Javascript instead of built-in IDs
-Speaking-URL-Hash = 1
+Speaking-URL-Hash = 0
+
+# cat=Settings//80; type=boolean; label=Add Back to top link, when scrolled down
+Back-Totop = 0
+
+# cat=Settings//90; type=boolean; label=Add Hashes to Browser-History
+Browser-History = 0
+
+# cat=Settings//100; type=string; label=Exclude Contenttypes
+Exclude-Contenttypes = fs_code_snippet

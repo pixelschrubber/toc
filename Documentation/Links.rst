@@ -20,5 +20,8 @@ Links
 :Git Repository:
 	https://github.com/pixelschrubber/toc
 
+:Example Page:
+    https://hosting.1und1.de/digitalguide/hosting/blogs/erfolgreich-bloggen-teil-1-eigenen-blog-erstellen/
+
 :Contact:
 	ulf.mayer@1und1.de

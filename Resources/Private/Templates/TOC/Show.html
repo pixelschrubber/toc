@@ -1,11 +1,12 @@
 <f:layout name="Default"/>
 
 <f:section name="main">
-  
-  
-
   <f:if condition="{toc -> f:count()} > '0'">
-    <div id="toc" class="toc {f:if(condition:'{settings.Enable-Smoothscroll} == 1',then:'smoothscroll',else:'hardjump')} {f:if(condition:'{settings.Show-Numbers} == 1',then:'numbers',else:'nonumbers')} {f:if(condition:'{settings.Speaking-URL-Hash} == 1',then:'speaking-urls',else:'standard')}">
+    <div id="toc" class="toc {f:if(condition:'{settings.Enable-Smoothscroll} == 1',then:'smoothscroll',else:'hardjump')} 
+         {f:if(condition:'{settings.Show-Numbers} == 1',then:'numbers',else:'nonumbers')} 
+         {f:if(condition:'{settings.Speaking-URL-Hash} == 1',then:'speaking-urls')} 
+         {f:if(condition:'{settings.Back-Totop} == 1',then:'toplink')} 
+         {f:if(condition:'{settings.Browser-History} == 1',then:'browserhistory')}">
       <div id="toctitle">
         <strong><f:translate key="toc.headline" /></strong>
         <f:if condition="{settings.Toggle-Visibility} == 1">
@@ -31,7 +32,9 @@
           </ol>
         </f:else>
       </f:if>
-    </div> 
+    </div>
+    <f:if condition="{settings.Back-Totop} == 1">
+      <span id="toctop">&#8673;</span>
+    </f:if>
   </f:if>
-
 </f:section>
