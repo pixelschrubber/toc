@@ -15,19 +15,17 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Enables a Table of Contents (TOC) know from Websites like Wikipedia as a plugin for each page which has headlines.',
 	'category' => 'plugin',
 	'author' => 'Ulf Mayer',
-	'author_email' => 'ulf.mayer@1und1.de',
+	'author_email' => 'typo3@ulf.info',
 	'state' => 'stable',
 	'internal' => '',
 	'uploadfolder' => '0',
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
-	'version' => '0.5.0',
+	'version' => '0.6.0',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '7.6.0-7.6.99',
-			'extbase' => '',
-            't3jquery' => ''
-		),
+			'typo3' => '7.6.0-8.7.99',
+			'extbase' => ''		),
 		'conflicts' => array(
 		),
 		'suggests' => array(

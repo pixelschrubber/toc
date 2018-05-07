@@ -7,6 +7,9 @@ Show-Amount = 4
 # cat=Settings//20; type=boolean; label=Allow the user to toggle the visibility of the contents
 Toggle-Visibility = 0
 
+# cat=Settings//25; type=boolean; label=Show toggle link as plus/minus and toggle deeper hierarchy levels (only works with Toggle-Visibility)
+Toggle-Style = 0
+
 # cat=Settings//30; type=boolean; label=Enable hierarchy
 Enable-Hierarchy = 1
 
@@ -30,3 +33,9 @@ Browser-History = 0
 
 # cat=Settings//100; type=string; label=Exclude Contenttypes
 Exclude-Contenttypes = fs_code_snippet
+
+# cat=Settings//110; type=boolean; label=Typo3 Links or normal A-Tag Links (can affect seo with baseurl)
+Typo3-Links = 1
+
+# cat=Settings//120; type=boolean; label=Include jQuery from CDN
+jQuery = 0

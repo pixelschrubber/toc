@@ -30,8 +30,12 @@ class TOCController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
     $settings = \unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][self::extKey]);
     $extensionSettings = is_array($settings) ? $settings : array();
     $this->extensionSettings = $extensionSettings;
+    
+    if($this->extensionSettings['jQuery'] == 1) {
+        $GLOBALS['TSFE']->additionalHeaderData['toc-jQuery'] .= '<script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>';
+    }
   }
-
+    
   /**
    * action show
    * 
@@ -49,7 +53,6 @@ class TOCController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
         $content = $this->view->render();
         return $content;
       }
-    }
-
+    }    
   }
 }
