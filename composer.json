@@ -1,5 +1,5 @@
 {
-  "name": "ONEANDONE/Toc",
+  "name": "oneandone/toc",
   "type": "typo3-cms-extension",
   "description": "Enables a Table of Contents (TOC) know from Websites like Wikipedia as a plugin for each page which has headlines.",
   "authors": [
