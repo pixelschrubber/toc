@@ -39,3 +39,6 @@ Typo3-Links = 1
 
 # cat=Settings//120; type=boolean; label=Include jQuery from CDN
 jQuery = 0
+
+# cat=Settings//130; type=boolean; label=Use Vanilla JS instead of jQuery
+vanillaJS = 1

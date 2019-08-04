@@ -6,10 +6,6 @@
   margin-bottom: 1em;
 }
 
-.toc ol {
-  font-size: 95%;  
-}
-
 .toc ol,
 .toc ol li {
   list-style: none;
@@ -69,4 +65,50 @@
   border-radius: 5px;
   z-index: 500;
   opacity: 0.8;  
+}
+
+.toc #togglelink {
+    width: auto;
+    height: auto;
+    margin: 0;
+    text-decoration: none;
+}
+
+.toc #togglelink:after,
+.toc #togglelink:before {
+    display: none;
+}
+
+.toc #togglelinkStyle {
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.toc #togglelinkStyle:before,
+.toc #togglelinkStyle:after {
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    background: #000;
+    top: 50%;
+    left: 0;
+}
+
+.toc #togglelinkStyle:before {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.toc #togglelinkStyle.active:before {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
 }

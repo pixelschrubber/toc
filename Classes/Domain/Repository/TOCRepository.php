@@ -43,18 +43,21 @@ class TOCRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
         $this->extensionSettings = $extensionSettings;
         $pageid = intval($GLOBALS['TSFE']->id);
         $lang = intval($GLOBALS['TSFE']->sys_language_uid);
-
         //@todo: sort by sorting?
         $where = "pid='" . $pageid . "' AND sys_language_uid='" . $lang . "' AND deleted=0 AND hidden=0";
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,header,CType,header_layout,bodytext,sorting,hidden,deleted', 'tt_content', $where);
-        if ($res->num_rows > 0 && intval($this->extensionSettings['Show-Amount']) <= $res->num_rows) {
-            while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+        $queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $res = $queryBuilder->select('uid','header','CType','header_layout','bodytext','sorting','hidden','deleted')
+        ->from('tt_content')
+        ->where($where)
+        ->execute();
+        if ($res->rowCount() > 0 && intval($this->extensionSettings['Show-Amount']) <= $res->rowCount()) {
+            while ($row = $res->fetch()) {
                 if ($row['header']) {
                     // @todo: 0 is headline 2 in my setup, is this standard? need to get this information from somewhere
                     $row['header_layout'] = $row['header_layout'] == 0 ? 2 : $row['header_layout'];
                     $this->tocContent[] = array('level' => $row['header_layout'], 'content' => $row['header'], 'anchor' => $row['uid'], 'urlhash' => $this->format_uri($row['header']));
                 }
-                
+
                 // Exclude specific content types
                 $excludeTypes = \explode(',', $this->extensionSettings['Exclude-Contenttypes']);
                 if (!in_array($row['CType'],$excludeTypes)) {
@@ -96,13 +99,13 @@ class TOCRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
         }
     }
 
-    protected function excludeFirstHeadlines() 
+    protected function excludeFirstHeadlines()
     {
         if ($this->extensionSettings['Exclude-First']) {
             array_shift($this->tocContent);
         }
     }
-    
+
     /*
      * Enable Hierarchy
      */
@@ -160,7 +163,7 @@ class TOCRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
      * Helper function to enable recursion
      */
 
-    protected function createTree(&$list, $parent) 
+    protected function createTree(&$list, $parent)
     {
         $tree = array();
         foreach ($parent as $k => $l) {
@@ -171,11 +174,11 @@ class TOCRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
         }
         return $tree;
     }
-    
+
     /*
      * Helper function to format headline into uri hash
      */
-    protected function format_uri($string, $separator = '-') 
+    protected function format_uri($string, $separator = '-')
     {
         $accents_regex = '~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i';
         $special_cases = array('&' => 'and', "'" => '');
