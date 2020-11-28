@@ -1,14 +1,6 @@
 {
   "name": "oneandone/toc",
-  "type": "typo3-cms-extension",
   "description": "Enables a Table of Contents (TOC) know from Websites like Wikipedia as a plugin for each page which has headlines.",
-  "authors": [
-    {
-      "name": "Ulf Mayer",
-      "email": "typo3@ulf.info"
-    }
-  ],
-  "license": "GPL-3.0-or-later",
   "keywords": [
     "structure",
     "headlines",
@@ -16,7 +8,21 @@
     "frontend",
     "responsive"
   ],
+  "homepage": "https://github.com/pixelschrubber/toc",
+  "authors": [
+    {
+      "name": "Ulf Mayer",
+      "email": "typo3@ulf.info"
+    }
+  ],
+  "type": "typo3-cms-extension",
+  "license": "GPL-3.0-or-later",
   "require": {
     "typo3/cms-core": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "ONEANDONE\\Toc\\": "Classes/"
+    }
   }
 }
