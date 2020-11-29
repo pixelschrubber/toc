@@ -4,9 +4,9 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	'TOC.' . $_EXTKEY,
+	'toc',
 	'TOC',
 	'Table of Contents'
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Table of Contents');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('toc', 'Configuration/TypoScript', 'Table of Contents');
