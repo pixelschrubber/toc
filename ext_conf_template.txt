@@ -36,9 +36,3 @@ Exclude-Contenttypes = fs_code_snippet
 
 # cat=Settings//110; type=boolean; label=Typo3 Links or normal A-Tag Links (can affect seo with baseurl)
 Typo3-Links = 1
-
-# cat=Settings//120; type=boolean; label=Include jQuery from CDN
-jQuery = 0
-
-# cat=Settings//130; type=boolean; label=Use Vanilla JS instead of jQuery
-vanillaJS = 1

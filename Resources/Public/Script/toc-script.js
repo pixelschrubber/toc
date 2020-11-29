@@ -1,58 +1,96 @@
-$(document).ready(function() {
-  $('#togglelink').click(function(event) {
-    event.preventDefault();
-    $(this).find('span').toggleClass("hide");
-    $('#toc ol.toclist').toggle("fast");
-  });
+(function () {
+  // Toggle-Visibility
+  if (document.querySelectorAll('#togglelink').length) {
+    document.querySelector('#togglelink').addEventListener('click', function (event) {
+      event.preventDefault();
+      var spans = document.querySelector("#togglelink").querySelectorAll('span');
+      spans.forEach(element => {
+        element.classList.toggle('hide');
+      });
+
+      if (document.querySelector('#toc ol.toclist').classList.contains('show')) {
+        document.querySelector('#toc ol.toclist').classList.add('hide');
+        document.querySelector('#toc ol.toclist').classList.remove('show');
+      } else {
+        document.querySelector('#toc ol.toclist').classList.add('show');
+        document.querySelector('#toc ol.toclist').classList.remove('hide');
+      }
+    }, false);
+  }
 
   // New Toggle Style
-  if ($('#toc').hasClass('togglestyle')) {
-    $('#toc ol ol').toggle("fast");
+  if (document.querySelector('#toc').classList.contains('togglestyle')) {
+    var deepLists = document.querySelectorAll('#toc ol ol');
+    deepLists.forEach(element => {
+      element.classList.add('hide');
+    });
+
+    document.querySelector('#togglelinkStyle').addEventListener('click', function (event) {
+      event.preventDefault();
+      document.querySelector('#togglelinkStyle').classList.toggle('active');
+      var deepLists = document.querySelectorAll('#toc ol ol');
+      deepLists.forEach(element => {
+        element.classList.toggle('hide');
+      });
+    }, false);
   }
-  $('#togglelinkStyle').click(function(event) {
-    event.preventDefault();
-    $(this).toggleClass("active");
-    $('#toc ol ol').toggle("fast");
-  });
 
   // Jump to top
-  if ($('#toc').hasClass('toplink')) {
-    var el = $('#toctop');
-    el.hide();
-    $(window).scroll(function () {
-      if ($(window).scrollTop() >= 400) {
-        el.fadeIn(500);
+  if (document.querySelector('#toc').classList.contains('toplink')) {
+    var scrollToTopBtn = document.querySelector("#toctop")
+    var rootElement = document.documentElement
+
+    function handleScroll() {
+      var scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
+      if ((rootElement.scrollTop / scrollTotal) > 0.80) {
+        scrollToTopBtn.style.display = "block"
       } else {
-        el.fadeOut(500);
+        scrollToTopBtn.style.display = "none"
       }
-    });
-    el.click(function (e) {
-      e.preventDefault();
-      $('html,body').animate({scrollTop: 0}, 300);
-    });
+    }
+    function scrollToTop() {
+      rootElement.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+    }
+    scrollToTopBtn.addEventListener("click", scrollToTop);
+    document.addEventListener("scroll", handleScroll);
   }
 
-  // speaking URL hashes
-  if ($('#toc').hasClass('speaking-urls')) {
-    $('#toc li a').each(function (index) {
-      var slug = $(this).find("span").data(slug);
-      $('div'+$(this.hash).selector).attr('id',slug.slug);
-      this.hash = slug.slug;
+  // Speaking URL hashes
+  if (document.querySelector('#toc').classList.contains('speaking-urls')) {
+    var links = document.querySelectorAll('#toc li a');
+    links.forEach(element => {
+      var slug = element.querySelector('span').getAttribute('data-slug');
+      if (slug !== null) {
+        var headline = document.querySelector('div' + element.getAttribute('href'));
+        headline.setAttribute('id', slug);
+      }
+      element.setAttribute('href', '#' + slug);
     });
   }
 
   // Jumplinks
-  $('#toc.smoothscroll ol.toclist a[href*="#"]').click(function() {
-    var $target = $(this.hash);
-    if ($target.length) {
-      var targetOffset = $target.offset().top;
-      $('html,body').animate({scrollTop: targetOffset}, 1000);
+  var smoothLinks = document.querySelectorAll('#toc.smoothscroll ol.toclist a[href*="#"]');
+  smoothLinks.forEach(element => {
+    element.addEventListener('click', function (event) {
+      event.preventDefault();
 
-      if($('#toc').hasClass('browserhistory')) {
-        var stateObj = {state: $(this.hash)};
-        history.pushState(stateObj,'', $(this.hash));
-      }
-      return false;
-    }
+      const href = this.getAttribute("href");
+      const offsetTop = document.querySelector(href).offsetTop;
+
+      scroll({
+        top: offsetTop,
+        behavior: "smooth"
+      });
+
+    }, false);
   });
-});
+
+  // Browserhistory
+  if (document.querySelector('#toc').classList.contains('browserhistory')) {
+    var stateObj = { state: $(this.hash) };
+    history.pushState(stateObj, '', $(this.hash));
+  }
+})();

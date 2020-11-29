@@ -1,6 +1,6 @@
 <f:section name="MenuRecursionStart">
   <f:if condition="{toc -> f:count()} > '0'"> 
-    <ol class="ordered-list list-content toclist {f:if(condition:'{settings.Enable-Hierarchy} == 1',then:'hierarchy',else:'flat')}">
+    <ol class="ordered-list list-content toclist show {f:if(condition:'{settings.Enable-Hierarchy} == 1',then:'hierarchy',else:'flat')}">
       <f:for each="{toc}" as="startLevelPage" iteration="i">
         <li class="toclevel-{startLevelPage.level}">
             

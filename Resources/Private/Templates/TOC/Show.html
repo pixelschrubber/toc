@@ -2,12 +2,7 @@
 
 <f:section name="main">
   <f:if condition="{toc -> f:count()} > '0'">
-    <div id="toc" class="toc content-table {f:if(condition:'{settings.Enable-Smoothscroll} == 1',then:'smoothscroll',else:'hardjump')} 
-         {f:if(condition:'{settings.Show-Numbers} == 1',then:'numbers',else:'nonumbers')} 
-         {f:if(condition:'{settings.Speaking-URL-Hash} == 1',then:'speaking-urls')} 
-         {f:if(condition:'{settings.Back-Totop} == 1',then:'toplink')} 
-         {f:if(condition:'{settings.Browser-History} == 1',then:'browserhistory')}
-         {f:if(condition:'{settings.Toggle-Style} == 1',then:'togglestyle')}">
+    <div id="toc" class="toc content-table {f:if(condition:'{settings.Enable-Smoothscroll} == 1',then:'smoothscroll',else:'hardjump')} {f:if(condition:'{settings.Show-Numbers} == 1',then:'numbers',else:'nonumbers')} {f:if(condition:'{settings.Speaking-URL-Hash} == 1',then:'speaking-urls')} {f:if(condition:'{settings.Back-Totop} == 1',then:'toplink')} {f:if(condition:'{settings.Browser-History} == 1',then:'browserhistory')} {f:if(condition:'{settings.Toggle-Style} == 1',then:'togglestyle')}">
       <div id="toctitle" class="opener">
         <strong class="h3"><f:translate key="toc.headline" /></strong>
         <f:if condition="{settings.Toggle-Visibility} == 1">

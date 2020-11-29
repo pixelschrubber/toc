@@ -6,6 +6,10 @@
   margin-bottom: 1em;
 }
 
+.toc .hide {
+  display: none;
+}
+
 .toc ol,
 .toc ol li {
   list-style: none;
