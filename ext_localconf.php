@@ -9,7 +9,7 @@ TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43('toc', 'pi/class.
 	'ONEANDONE.toc',
 	'TOC',
 	array(
-		'TOC' => 'show',
+		\ONEANDONE\Toc\Controller\TOCController::class => 'show',
 	),
 	// non-cacheable actions
 	array(

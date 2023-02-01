@@ -2,9 +2,9 @@
 
 namespace ONEANDONE\Toc\Controller;
 
+use ONEANDONE\Toc\Domain\Repository\TOCRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 
 /**
@@ -21,12 +21,12 @@ class TOCController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
   /**
    * tocRepository
    *
-   * @Extbase\Inject
    * @var \ONEANDONE\Toc\Domain\Repository\TOCRepository
    */
   protected $tocRepository = NULL;   
 
-  public function __construct() {
+  public function __construct(TOCRepository $tocRepository) {
+    $this->tocRepository = $tocRepository;
     $settings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('toc');
 
     $extensionSettings = is_array($settings) ? $settings : array();
