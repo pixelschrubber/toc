@@ -67,11 +67,12 @@ class TOCRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
                         $dom->strictErrorChecking = false;
                         // HTML output could be dirty, avoid warnings
                         @$dom->loadHTML($row['bodytext']);
-                        $headlines = array("h1", "h2", "h3", "h4", "h5", "h6");
-                        foreach ($headlines as $tag) {
-                            foreach ($dom->getElementsByTagName($tag) as $item) {
-                                $this->tocContent[] = array('level' => (int) str_replace("h", "", $item->tagName), 'content' => utf8_decode($item->nodeValue), 'anchor' => $row['uid'], 'urlhash' => $this->format_uri(utf8_decode($item->nodeValue)));
-                            }
+                        $xpath = new \DOMXPath($dom);
+                        $headlines = $xpath->query('//h1 | //h2 | //h3 | //h4 | //h5 | //h6');
+                        $headlineCount = $headlines->length;
+                        for ($i = 0; $i < $headlineCount; ++$i) {
+                            $item = $headlines->item($i);
+                            $this->tocContent[] = array('level' => (int) str_replace("h", "", $item->tagName), 'content' => utf8_decode($item->nodeValue), 'anchor' => $row['uid'], 'urlhash' => $this->format_uri(utf8_decode($item->nodeValue)));
                         }
                     }
                 }
