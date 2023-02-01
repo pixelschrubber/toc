@@ -23,7 +23,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 0,
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '11.4.0-11.4.99',
+			'typo3' => '11.4.0-11.5.99',
 			'extbase' => ''		),
 		'conflicts' => array(
 		),
